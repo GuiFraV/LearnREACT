@@ -57,7 +57,7 @@ export default function App(){
                 <input 
                   type="checkbox" 
                   checked={todo.completed} 
-                  onChange={(e) => toggleTodo(todo.id, e.target.completed)}
+                  onChange={(e) => toggleTodo(todo.id, e.target.checked)}
                   
                 />
                 {todo.title}
