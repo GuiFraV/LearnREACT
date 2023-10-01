@@ -14,6 +14,21 @@ export default function App(){
         {id: crypto.randomUUID(), title: newItem, completed: false},
       ]
     })
+
+    setItem('')
+  }
+
+  function toggleTodo(id, completed){
+    setTodos(currentTodos => {
+      return currentTodos.map(todo => {
+        if(todo.id === id){
+          return { ...todo, completed}
+        }
+        return todo
+      })
+    })
+
+
   }
   
   
@@ -36,13 +51,20 @@ export default function App(){
         <h1 className="header">Todo List</h1>
         <ul className="list">
           {todos.map(todo => {
-            return <li>
-            <label>
-              <input type="checkbox" checked={todo.completed} />
-              {todo.title}
-            </label>
-            <button className="btn btn-danger">Delete</button>
+            return (
+            <li key={todo.id}>
+              <label>
+                <input 
+                  type="checkbox" 
+                  checked={todo.completed} 
+                  onChange={(e) => toggleTodo(todo.id, e.target.completed)}
+                  
+                />
+                {todo.title}
+              </label>
+              <button className="btn btn-danger">Delete</button>
             </li>
+            ) 
           })}
         </ul>
     </>
