@@ -27,10 +27,13 @@ export default function App(){
         return todo
       })
     })
-
-
   }
-  
+
+  function deleteTodo(id){
+    setTodos(currentTodos => {
+      return currentTodos.filter(todo => todo.id !== id);
+    })
+  }
   
   return (
 
@@ -62,7 +65,12 @@ export default function App(){
                 />
                 {todo.title}
               </label>
-              <button className="btn btn-danger">Delete</button>
+              <button 
+                className="btn btn-danger"
+                onClick={() => deleteTodo(todo.id)}
+              >
+                Delete
+              </button>
             </li>
             ) 
           })}
